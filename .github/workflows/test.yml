@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      prs: '[{"labels": ["@hoge/hoge", "@hoge/fuga"]}, {"labels": "@fuga/fuga"}]'
+    steps:
+      - name: show all
+        shell: bash
+        run: |
+          echo "all"
+          echo $prs
+      - name: show all labels
+        shell: bash
+        run: |
+          echo "all labels"
+          echo $prs | jq -r '.[] | .labels[]'
+
+
+
