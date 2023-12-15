@@ -7,7 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      prs: '[{"labels": ["@hoge/hoge", "@hoge/fuga"]}, {"labels": "@fuga/fuga"}]'
+      prs: '[{"labels": ["@hoge/hoge", "@hoge/fuga"]}, {"labels": ["@fuga/fuga"]}]'
     steps:
       - name: show all
         shell: bash
@@ -18,10 +18,7 @@ jobs:
         shell: bash
         run: |
           echo "all labels"
-          for pr in ${{ fromJSON(env.prs) }}; do
-            echo $pr
-            echo $pr.labels
-          done
+          echo ${{ fromJSON(env.prs) }} | jq -c '[.[].labels[]]'
 
 
 
