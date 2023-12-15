@@ -13,12 +13,12 @@ jobs:
         shell: bash
         run: |
           echo "all"
-          echo ${{ fromJSON(env.prs) }}
+          echo ${{ env.prs }}
       - name: show all labels
         shell: bash
         run: |
           echo "all labels"
-          echo ${{ fromJSON(env.prs) }} | jq -c '[.[].labels[]]'
+          echo ${{ env.prs }} | jq -c '[.[].labels[]]'
 
 
 
